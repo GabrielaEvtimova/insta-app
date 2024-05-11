@@ -5,7 +5,7 @@ import DarkMode from "../DarkMode/DarkMode";
 
 export default function Header() {
   return (
-    <div className="shadow border-b sticky top-0 bg-white dark:bg-black z-30 p-3">
+    <div className="shadow border-b sticky top-0 bg-white dark:bg-black z-30 p-3  dark:border-neutral-700">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Link href="/" className="hidden lg:inline-flex">
           <Image
@@ -36,7 +36,7 @@ export default function Header() {
         />
         <div className="flex items-center gap-4">
           <DarkMode />
-          <button className="text-sm lg:text-[12pt] font-semibold text-blue-500">
+          <button className="text-sm lg:text-[12pt] font-semibold text-neutral-800 dark:text-white select-none">
             Sign in
           </button>
         </div>

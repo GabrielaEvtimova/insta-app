@@ -1,9 +1,13 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import DarkMode from "../DarkMode/DarkMode";
+import { signIn, useSession, signOut } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
+  // console.log(session);
   return (
     <div className="shadow border-b sticky top-0 bg-white dark:bg-black z-30 p-3  dark:border-neutral-700">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
@@ -36,9 +40,21 @@ export default function Header() {
         />
         <div className="flex items-center gap-4">
           <DarkMode />
-          <button className="text-sm lg:text-[12pt] font-semibold text-neutral-800 dark:text-white select-none">
-            Sign in
-          </button>
+          {session ? (
+            <img
+              src={session.user.image}
+              alt={session.user.name}
+              className="rounded-full w-10 h-10 cursor-pointer hover:[sign out]"
+              onClick={signOut}
+            />
+          ) : (
+            <button
+              className="text-sm lg:text-[12pt] font-semibold text-neutral-800 dark:text-white select-none"
+              onClick={signIn}
+            >
+              Sign in
+            </button>
+          )}
         </div>
       </div>
     </div>

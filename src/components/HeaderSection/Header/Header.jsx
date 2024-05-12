@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import Logo from "../../../components/HeaderSection/Logo/Logo";
-import SearchBar from "../../../components/HeaderSection/SearchBar/SearchBar";
-import DarkMode from "../../../components/HeaderSection/DarkMode/DarkMode";
-import ModalUpload from "../../../components/HeaderSection/ModalUpload/ModalUpload";
+import Logo from "../Logo/Logo";
+import SearchBar from "../SearchBar/SearchBar";
+import DarkMode from "../DarkMode/DarkMode";
+import ModalUpload from "../ModalUpload/ModalUpload";
 
 export default function Header() {
   const { data: session } = useSession();

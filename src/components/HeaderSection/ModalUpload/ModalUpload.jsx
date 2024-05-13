@@ -4,13 +4,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { HiCamera } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "react-modal";
-import { uploadFile } from "@/storage/storage";
+import { uploadFile } from "@/firebase-functions/storage";
+import { uploadPost } from "@/firebase-functions/firestore";
 
-export default function ModalUpload({ onUpload, setOnUpload }) {
+export default function ModalUpload({ onUpload, setOnUpload, session }) {
   const filePickerRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
+  const [postUploading, setPostUploading] = useState(false);
+  const [caption, setCaption] = useState("");
 
   useEffect(() => {
     if (selectedFile) {
@@ -35,6 +38,22 @@ export default function ModalUpload({ onUpload, setOnUpload }) {
       setImageUrl,
       setSelectedFile
     );
+
+    
+  };
+
+  const handleSubmit = async () => {
+    await uploadPost(session, caption, imageUrl, setPostUploading, setOnUpload);
+    closeModal()
+  };
+
+  const closeModal = () => {
+    setOnUpload(false);
+    setImageUrl(null);
+    setCaption("");
+    setSelectedFile(null);
+    setPostUploading(false);
+    setImageUploading(false);
   };
 
   return (
@@ -75,10 +94,18 @@ export default function ModalUpload({ onUpload, setOnUpload }) {
               type="text"
               maxLength="150"
               placeholder="Please enter your caption..."
+              onChange={(e) => setCaption(e.target.value)}
+              value={caption}
               className="m-4 border-none text-center w-full focus:outline-none placeholder:text-neutral-400 dark:placeholder:text-neutral-500 dark:bg-black"
             />
             <button
-              disabled
+              onClick={handleSubmit}
+              disabled={
+                !selectedFile ||
+                caption.trim() === "" ||
+                postUploading ||
+                imageUploading
+              }
               className="w-full m-6 p-2 rounded-lg shadow-md
               bg-violet-300 text-neutral-900
               dark:bg-violet-700 dark:text-neutral-100
@@ -92,7 +119,7 @@ export default function ModalUpload({ onUpload, setOnUpload }) {
           </div>
           <AiOutlineClose
             className="cursor-pointer absolute top-2 right-2 transform hover:scale-125 transition duration-300"
-            onClick={() => setOnUpload(false)}
+            onClick={closeModal}
           />
         </Modal>
       )}

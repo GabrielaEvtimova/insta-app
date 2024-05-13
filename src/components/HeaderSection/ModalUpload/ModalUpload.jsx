@@ -1,9 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import { HiCamera } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import Modal from "react-modal";
+import { uploadFile } from "@/storage/storage";
 
 export default function ModalUpload({ onUpload, setOnUpload }) {
+  const filePickerRef = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
+
+  useEffect(() => {
+    if (selectedFile) {
+      uploadImageToStorage();
+    }
+  }, [selectedFile]);
+
+  const addImageToPost = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setSelectedFile(file);
+      setImageUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const uploadImageToStorage = async () => {
+    setImageUploading(true);
+    await uploadFile(
+      selectedFile,
+      setImageUploading,
+      setImageUrl,
+      setSelectedFile
+    );
+  };
 
   return (
     <>
@@ -15,7 +47,30 @@ export default function ModalUpload({ onUpload, setOnUpload }) {
           ariaHideApp={false}
         >
           <div className="flex flex-col justify-center items-center h-[100%]">
-            <HiCamera className="text-5xl text-neutral-400 dark:text-neutral-600 cursor-pointer" />
+            {selectedFile ? (
+              <img
+                onClick={() => setSelectedFile(null)}
+                src={imageUrl}
+                alt="selected file"
+                className={`w-full max-h-[250px] object-contain cursor-pointer ${
+                  imageUploading && "animate-pulse"
+                }`}
+              />
+            ) : (
+              <>
+                <HiCamera
+                  onClick={() => filePickerRef.current.click()}
+                  className="text-5xl text-neutral-400 dark:text-neutral-600 cursor-pointer"
+                />
+                <input
+                  hidden
+                  ref={filePickerRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={addImageToPost}
+                />
+              </>
+            )}
             <input
               type="text"
               maxLength="150"

@@ -11,6 +11,8 @@ export default function Header() {
   const { data: session } = useSession();
 
   const [onUpload, setOnUpload] = useState(false);
+  // const [selectedFile, setSelectedFile] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
 
   return (
     <div className="shadow border-b sticky top-0 bg-white dark:bg-black z-30 p-3  dark:border-neutral-700">
@@ -42,7 +44,7 @@ export default function Header() {
           )}
         </div>
       </div>
-      <ModalUpload onUpload={onUpload} setOnUpload={setOnUpload} />
+      <ModalUpload onUpload={onUpload} setOnUpload={setOnUpload}/>
     </div>
   );
 }

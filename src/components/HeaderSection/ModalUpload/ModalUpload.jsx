@@ -107,8 +107,7 @@ export default function ModalUpload({ onUpload, setOnUpload, session }) {
                 imageUploading
               }
               className="w-full m-6 p-2 rounded-lg shadow-md
-              bg-violet-300 text-neutral-900
-              dark:bg-violet-700 dark:text-neutral-100
+              bg-violet-700 text-neutral-100
               disabled:bg-neutral-100 disabled:text-neutral-600
               dark:disabled:bg-neutral-800 dark:disabled:text-neutral-200
               hover:brightness-95 dark:hover:brightness-125 

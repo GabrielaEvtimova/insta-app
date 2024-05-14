@@ -2,7 +2,11 @@ import { app } from "@/firebase.config";
 import {
   addDoc,
   collection,
+  getDoc,
+  getDocs,
   getFirestore,
+  orderBy,
+  query,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -40,4 +44,15 @@ export const uploadPost = async (
   // Set the post uploading and upload modal states to false
   setPostUploading(false);
   setOnUpload(false);
+};
+
+export const getData = async () => {
+  const q = query(collection(db, "posts"), orderBy("createdOn", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  let data = [];
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() });
+  });
+  return data;
 };

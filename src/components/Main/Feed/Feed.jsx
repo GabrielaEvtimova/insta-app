@@ -9,7 +9,7 @@ export default function Feed() {
     md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
     >
       {/* Posts - left side */}
-      <section className="md:col-span-2 lg:col-span-3 xl:col-span-4 ml-4 xl:ml-2">
+      <section className="md:col-span-2 lg:col-span-3 xl:col-span-4">
         <Posts />
       </section>
 

@@ -1,7 +1,16 @@
-import React from 'react'
+import { getData } from "@/firebase-functions/firestore";
+import React from "react";
+import PostCard from "../PostCard/PostCard";
 
-export default function Posts() {
+export default async function Posts() {
+  
+  const posts = await getData();
+
   return (
-    <div>Posts</div>
-  )
+    <div>
+      {posts.map((post) => 
+        <PostCard key={post.id} post={post} />
+      )}
+    </div>
+  );
 }

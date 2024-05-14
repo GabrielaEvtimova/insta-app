@@ -44,7 +44,8 @@ export default function ModalUpload({ onUpload, setOnUpload, session }) {
 
   const handleSubmit = async () => {
     await uploadPost(session, caption, imageUrl, setPostUploading, setOnUpload);
-    closeModal()
+    closeModal();
+    location.reload()
   };
 
   const closeModal = () => {

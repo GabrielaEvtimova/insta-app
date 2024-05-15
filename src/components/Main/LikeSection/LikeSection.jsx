@@ -42,7 +42,7 @@ export default function Like({ id }) {
               />
             ) : (
               <HiHeart
-                className="text-red-400 text-3xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
+                className="text-[rgb(248,87,165)] text-3xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
                 onClick={handleLikedPost}
               />
             )}

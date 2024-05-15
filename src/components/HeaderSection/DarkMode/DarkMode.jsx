@@ -24,7 +24,7 @@ export default function DarkMode() {
           />
         ) : (
           <MdDarkMode
-            className="text-xl sm:text-2xl cursor-pointer transform hover:scale-125 transition duration-300"
+            className="text-2xl sm:text-3xl cursor-pointer transform hover:scale-125 transition duration-300"
             onClick={() => setTheme("dark")}
           />
         ))}

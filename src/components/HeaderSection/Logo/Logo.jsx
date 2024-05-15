@@ -7,23 +7,23 @@ export default function Logo() {
     <>
       <Link href="/" className="hidden lg:inline-flex">
         <Image
-          src="/Instagram-Logo.webp"
+          src="/insta-black.png"
           width={96}
           height={96}
           alt="Instagram Logo"
           className="dark:hidden w-auto"
         />
         <Image
-          src="/logo.png"
+          src="/insta-white.png"
           width={96}
           height={96}
           alt="Instagram Logo"
           className="hidden dark:inline-flex w-auto"
         />
       </Link>
-      <Link href="/" className="lg:hidden">
-        <Image
-          src="/logo.webp"
+        <Link href="/" className="lg:hidden  ">
+         <Image
+          src="/InstaApp.png"
           width={40}
           height={40}
           alt="Instagram Logo"

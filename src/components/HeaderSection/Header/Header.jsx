@@ -16,7 +16,7 @@ export default function Header() {
     <div className="shadow border-b sticky top-0 bg-white dark:bg-black z-30 p-3  dark:border-neutral-700">
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Logo />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <div className="flex items-center gap-2 sm:gap-4">
           <DarkMode />
           {session ? (

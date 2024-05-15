@@ -5,6 +5,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import toast from "react-hot-toast";
 
 const storage = getStorage(app);
 
@@ -44,7 +45,19 @@ export const uploadFile = async (
     // Error handler
     (error) => {
       // Log the error, reset upload state and URL, and reset selected file
-      console.error(error);
+      if (
+        error.message.startsWith(
+          "Firebase Storage: User does not have permission to access"
+        )
+      ) {
+        toast.error(
+          "Files should be under 2MB. Select a smaller file to upload."
+        );
+        // setImageUploading(false);
+        setImageUrl(null);
+        setSelectedFile(null);
+      }
+      console.log(error.message);
       setImageUploading(false);
       setImageUrl(null);
       setSelectedFile(null);
@@ -56,6 +69,7 @@ export const uploadFile = async (
         // Set the image URL with the download URL and reset upload state
         setImageUrl(downloadUrl);
         setImageUploading(false);
+        toast.success("Your file has been successfully uploaded.")
       });
     }
   );

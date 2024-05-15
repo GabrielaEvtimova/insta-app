@@ -1,8 +1,9 @@
 import CommentSection from "@/components/Main/CommentSection/CommentSection";
+import CopyLink from "@/components/Main/CopyLink/CopyLink";
 import Like from "@/components/Main/LikeSection/LikeSection";
 import { getSinglePost } from "@/firebase-functions/firestore";
 import React from "react";
-import { HiOutlineDotsVertical } from "react-icons/hi";
+
 
 export default async function page({ params }) {
   const id = params.id;
@@ -18,7 +19,7 @@ export default async function page({ params }) {
             className="rounded-full h-12 object-cover border dark:border-neutral-700 p-1 mr-3"
           />
           <p className="flex-1 font-bold">{post.username}</p>
-          <HiOutlineDotsVertical className="h-5 cursor-pointer" />
+          <CopyLink post={post}/>
         </div>
         <img
           src={post.image}

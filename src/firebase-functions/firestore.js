@@ -4,6 +4,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   getFirestore,
   onSnapshot,
@@ -128,4 +129,17 @@ export const getComments = (id, setComments) => {
   onSnapshot(query(collection(db, "posts", id, "comments"), orderBy("timestamp", "desc")), (snapshot) => {
     setComments(snapshot.docs);
   },);
+};
+
+/**
+ * Retrieves a single post from the database based on its ID.
+ * 
+ * @param {string} id - The ID of the post to retrieve.
+ * @returns {Promise<object>} A Promise that resolves with the data of the retrieved post.
+ */
+export const getSinglePost = async (id) => {
+  const q = query(doc(db, "posts", id));
+  const querySnapshot = await getDoc(q);
+
+  return querySnapshot.data()
 };

@@ -2,9 +2,11 @@ import React from "react";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import Like from "../LikeSection/LikeSection";
 import CommentSection from "../CommentSection/CommentSection";
+import Link from "next/link";
 
 export default function PostCard({ post }) {
   return (
+    <Link href={`/post/${post.id}`}>
     <div className="bg-white dark:bg-black my-7 border dark:border-neutral-700 rounded-md">
       <div className="flex items-center p-5 border-b border-neutral-100 dark:border-neutral-800">
         <img
@@ -27,5 +29,6 @@ export default function PostCard({ post }) {
       </p>
       <CommentSection id={post.id} />
     </div>
+    </Link>
   );
 }

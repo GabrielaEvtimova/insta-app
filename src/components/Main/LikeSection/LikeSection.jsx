@@ -42,18 +42,22 @@ export default function Like({ id }) {
               />
             ) : (
               <HiHeart
-                className="text-[rgb(248,87,165)] text-3xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
+                className="text-red-400 text-3xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out"
                 onClick={handleLikedPost}
               />
             )}
             {likes.length === 1 && <p className="text-neutral-500">1 like</p>}
-            {likes.length > 1 && <p className="text-neutral-500">{likes.length} likes</p>}
+            {likes.length > 1 && (
+              <p className="text-neutral-500">{likes.length} likes</p>
+            )}
           </div>
         </div>
       ) : (
         <div className="flex border-t border-neutral-100 dark:border-neutral-800 px-4 pt-4">
           {likes.length === 1 && <p className="text-neutral-500">1 like</p>}
-            {likes.length > 1 && <p className="text-neutral-500">{likes.length} likes</p>}
+          {likes.length > 1 && (
+            <p className="text-neutral-500">{likes.length} likes</p>
+          )}
         </div>
       )}
     </div>

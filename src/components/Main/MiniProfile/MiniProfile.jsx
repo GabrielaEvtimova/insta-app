@@ -9,7 +9,7 @@ export default function MiniProfile() {
   return (
     <div className="flex items-center justify-between mt-14 ml-10">
       <img
-        src={session ? session?.user?.image : "/logo.webp"}
+        src={session ? session?.user?.image : "/insta-light.png"}
         alt={session ? session?.user?.name : "instagram-logo"}
         className="w-16 h-16 rounded-full border p-[2px] border-neutral-300 dark:border-neutral-600"
       />

@@ -23,7 +23,7 @@ export default function Logo() {
       </Link>
         <Link href="/" className="lg:hidden  ">
          <Image
-          src="/InstaApp.png"
+          src="/insta-light.png"
           width={40}
           height={40}
           alt="Instagram Logo"

@@ -47,7 +47,7 @@ export default function Header() {
             </>
           ) : (
             <button
-              className="text-sm lg:text-[12pt] font-semibold text-neutral-800 dark:text-white select-none"
+              className="lg:text-[12pt] font-semibold text-neutral-800 dark:text-white select-none"
               onClick={signIn}
             >
               Sign in

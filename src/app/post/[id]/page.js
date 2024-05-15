@@ -29,8 +29,13 @@ export default async function page({ params }) {
         <Like id={id} />
         <p className="flex p-5 truncate">
           <span className="font-bold mr-2">{post.username}</span>
-          <span className=" truncate">{post.caption}</span>
+          {/* <span className=" truncate">{post.caption}</span> */}
         </p>
+        <p className="flex px-5 truncate mt-[-18px]">
+          {/* <span className="font-bold mr-2">{post.username}</span> */}
+          <span className="whitespace-normal">{post.caption}</span>
+        </p>
+
         <CommentSection id={id} />
       </div>
     </main>

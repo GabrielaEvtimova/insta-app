@@ -6,6 +6,8 @@ import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
 import DarkMode from "../DarkMode/DarkMode";
 import ModalUpload from "../ModalUpload/ModalUpload";
+import { LuUpload } from "react-icons/lu";
+
 
 export default function Header() {
   const { data: session } = useSession();
@@ -17,12 +19,12 @@ export default function Header() {
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Logo />
         {/* <SearchBar /> */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <DarkMode />
           {session ? (
             <>
-              <IoMdAddCircleOutline
-                className="text-xl sm:text-2xl cursor-pointer transform hover:scale-125 transition duration-300"
+              <LuUpload
+                className="text-2xl sm:text-3xl cursor-pointer transform hover:scale-125 transition duration-300"
                 onClick={() => setOnUpload(true)}
               />
               <img

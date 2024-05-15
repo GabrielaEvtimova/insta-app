@@ -16,7 +16,7 @@ export default function MiniProfile() {
       <div className="flex-1 ml-4">
         {session && <h2 className="font-bold">{session?.user?.username}</h2>}
         <h3 className="text-neutral-400 dark:text-neutral-500 text-sm">
-          Welcome to Instagram
+          Welcome to Insta App
         </h3>
       </div>
       {session ? (

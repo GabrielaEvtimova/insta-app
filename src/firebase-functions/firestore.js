@@ -100,3 +100,32 @@ export const addLike = async (id, session) => {
 export const removeLike = async (id, session) => {
   await deleteDoc(doc(db, "posts", id, "likes", session?.user?.uid));
 };
+
+/**
+ * Adds a comment to a specific post in the database.
+ * 
+ * @param {string} id - The ID of the post to add the comment to.
+ * @param {object} session - The user session object containing user information.
+ * @param {string} comment - The comment to be added to the post.
+ * @returns {Promise<void>} A Promise that resolves when the comment is successfully added.
+ */
+export const addComment = async (id, session, comment) => {
+  await addDoc(collection(db, "posts", id, "comments"), {
+    username: session?.user?.username,
+    profileImage: session?.user?.image,
+    comment: comment,
+    timestamp: serverTimestamp(),
+  },);
+};
+
+/**
+ * Retrieves comments for a specific post from the database and updates the comments state.
+ * 
+ * @param {string} id - The ID of the post to retrieve comments for.
+ * @param {Function} setComments - Function to set the comments state with the retrieved comments documents.
+ */
+export const getComments = (id, setComments) => {
+  onSnapshot(query(collection(db, "posts", id, "comments"), orderBy("timestamp", "desc")), (snapshot) => {
+    setComments(snapshot.docs);
+  },);
+};

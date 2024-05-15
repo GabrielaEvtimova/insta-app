@@ -1,6 +1,7 @@
 import React from "react";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import Like from "../Like/Like";
+import Like from "../LikeSection/LikeSection";
+import CommentSection from "../CommentSection/CommentSection";
 
 export default function PostCard({ post }) {
   return (
@@ -19,11 +20,12 @@ export default function PostCard({ post }) {
         alt={post.caption}
         className="object-cover w-full"
       />
-      <Like id={post.id}/>
+      <Like id={post.id} />
       <p className="flex p-5 truncate">
         <span className="font-bold mr-2">{post.username}</span>
-        {post.caption}
+        <span className=" truncate">{post.caption}</span>
       </p>
+      <CommentSection id={post.id} />
     </div>
   );
 }
